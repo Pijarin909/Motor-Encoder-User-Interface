@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktek Dasar Sistem Kendali : Motor Encoder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header> Project UTS Praktikum Dasar Sistem Kendali : Motor Encoder </header>
+
+  <div class="container">
+    <button id="connect">Connect ke Arduino</button>
+    <div class="status" id="status">Belum terhubung</div>
+
+    <!-- ✅ Tombol STOP & RESET -->
+    <div class="control-buttons">
+      <button id="stopMotor">🟥 Stop Motor</button>
+      <button id="resetSystem">🔄 Reset Sistem</button>
+      <button id="cwButton">⟳ Clockwise</button>
+      <button id="ccwButton">⟲ Counterclockwise</button>
+    </div>
+
+    <div class="data-display">
+      <div class="data-box">
+        <div>RPM</div>
+        <div id="rpm" class="data-value">0</div>
+      </div>
+      <div class="data-box">
+        <div>Posisi</div>
+        <div id="pos" class="data-value">0</div>
+      </div>
+    </div>
+
+    <div class="rpm-input-container">
+      <label for="rpmValue">Kecepatan Motor (RPM)</label>
+      <input type="number" id="rpmValue" min="0" max="1000" value="0" style="width: 100px; text-align: center;">
+      <button id="setRPM">Set RPM</button>
+    </div>
+
+    <div class="angle-container">
+      <label for="angleInput">Input Posisi Sudut (°)</label>
+      <input type="number" id="angleInput" placeholder="Masukkan sudut (0 - 360)">
+      <button id="setAngle">Atur Sudut</button>
+    </div>
+
+    <div class="pid-container">
+      <h3>Kontrol PID RPM</h3>
+      <label for="kp_rpm">Kp:</label>
+      <input type="number" id="kp_rpm" value="0.5" step="0.1">
+      <label for="ki_rpm">Ki:</label>
+      <input type="number" id="ki_rpm" value="0.1" step="0.01">
+      <label for="kd_rpm">Kd:</label>
+      <input type="number" id="kd_rpm" value="0.01" step="0.01">
+      <button id="sendPID_RPM">Kirim PID RPM</button>
+    </div>
+
+    <div class="pid-container">
+      <h3>Kontrol PID Posisi</h3>
+      <label for="kp_pos">Kp:</label>
+      <input type="number" id="kp_pos" value="2.5" step="0.1">
+      <label for="ki_pos">Ki:</label>
+      <input type="number" id="ki_pos" value="0.1" step="0.01">
+      <label for="kd_pos">Kd:</label>
+      <input type="number" id="kd_pos" value="0.05" step="0.01">
+      <button id="sendPID_POS">Kirim PID POS</button>
+    </div>
+
+    <canvas id="positionChart" width="400" height="200"></canvas>
+  </div>
+
+  <footer>by Pijar | Teknik Elektro Universitas Siliwangi Angkatan 2024</footer>
+  <script src="script.js"></script>
+</body>
+</html>
